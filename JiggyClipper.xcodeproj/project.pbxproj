@@ -1,0 +1,616 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		19DBBC7A7227125047F865E2 /* AppGroupManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05670C41AF2D9BFC55CDD361 /* AppGroupManager.swift */; };
+		2599C5F7C7CFC22F6011C788 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A5113935B0A97574252AC2 /* ContentView.swift */; };
+		32378F66141AB010863ABDBE /* ClipRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA99EDA5F3A59154306C751D /* ClipRequest.swift */; };
+		401AC73B2BA298FC8B38AAA0 /* ClipperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF17028F50790AB91D6ADE9 /* ClipperView.swift */; };
+		448E69E8DB11446143D9F1EA /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E420BBBA96EF4D0EC6C624 /* PreviewView.swift */; };
+		4938FDFC3E8A614FAA8E0817 /* SharedConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB164542A8CF1B366DB0C2A /* SharedConstants.swift */; };
+		54E1EB1D199CEF9CB7BA1DF2 /* ClipperExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 55B8E16DC095C38FB57109F8 /* ClipperExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		562F05D4DF75C0308262643A /* JSBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6735DF62D1D87592BFDB409A /* JSBridge.swift */; };
+		5CEE1F7D59DF0A1FE7F1330D /* LLMConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC28267FD00BD05D74E7438 /* LLMConfigView.swift */; };
+		5E5BA00C5E7603B505C55B9F /* JiggyClipperApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BB5E4C33C54A073F482B0F /* JiggyClipperApp.swift */; };
+		65E11B25FDFE2ACA8F85550F /* Template.swift in Sources */ = {isa = PBXBuildFile; fileRef = F721FD97A4DB1C06309B27CA /* Template.swift */; };
+		6E9107DBD42F195ECAA0D600 /* ClipRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA99EDA5F3A59154306C751D /* ClipRequest.swift */; };
+		725CC4564BD0DBC01DBF4EDC /* TemplatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6CC327F20A5D2AF2C109C46 /* TemplatePickerView.swift */; };
+		894B939FA05C3CAF3C47800A /* ClippingEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3243DBEE83FBC902B665DC6E /* ClippingEngine.swift */; };
+		8D54F936240B60ED17730539 /* HTMLFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A729B286CA54FE770816316 /* HTMLFetcher.swift */; };
+		90B44CDC6D075757C639A9D3 /* TemplateEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189347E204C81FBF431E7486 /* TemplateEditorView.swift */; };
+		9341BA31029E0F4A17E7EFE1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F79DB6D55A293FA18856F9EE /* Assets.xcassets */; };
+		98062C18621D7F9C4954717C /* TemplateStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223FE85A2D504572DCFFEB8E /* TemplateStorage.swift */; };
+		A01FB60575E465F4F7C0DC40 /* TemplateListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2904D84A1311A579F6D0C8 /* TemplateListView.swift */; };
+		ADF09E9BEE38F3409FB5FAB6 /* ObsidianLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B094DC4C82EF105DCFDCC4 /* ObsidianLauncher.swift */; };
+		B6376DE5F06145CB5524976D /* LLMProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874C427CA0558B12CF2F3657 /* LLMProvider.swift */; };
+		B6B9E23A286953F524CC15B9 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D35A7FB94BDD85893CB0C2 /* SettingsView.swift */; };
+		B74B01884A45BC2FCF8CBFA5 /* clipper-core.js in Resources */ = {isa = PBXBuildFile; fileRef = CBB8CDEBB67E6B997929BC61 /* clipper-core.js */; };
+		B7EC2B1C05D6E098F558879B /* Template.swift in Sources */ = {isa = PBXBuildFile; fileRef = F721FD97A4DB1C06309B27CA /* Template.swift */; };
+		BD1B22ED21D29CBAD3D3A4C5 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D16A0127B183B6A6F88C365 /* ShareViewController.swift */; };
+		C94C8A9668CF606BD1E9F3F4 /* AppGroupManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05670C41AF2D9BFC55CDD361 /* AppGroupManager.swift */; };
+		CB2D189E255902330F3D5AF2 /* SharedConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB164542A8CF1B366DB0C2A /* SharedConstants.swift */; };
+		DE1A0678689CC7A21D59448F /* LLMProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874C427CA0558B12CF2F3657 /* LLMProvider.swift */; };
+		E8E785AFE1D1F34FF86C9F42 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172005F5A3498DFF488FD1E9 /* SettingsManager.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		16D22289ECF27294D9CDE76C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 56CEE9DBCB454A0051DB3E2A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ADD11CEE1098AA7EE36BC56E;
+			remoteInfo = ClipperExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		5C9C0AE97D336AF7F90045B9 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				54E1EB1D199CEF9CB7BA1DF2 /* ClipperExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		05670C41AF2D9BFC55CDD361 /* AppGroupManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGroupManager.swift; sourceTree = "<group>"; };
+		05BB5E4C33C54A073F482B0F /* JiggyClipperApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JiggyClipperApp.swift; sourceTree = "<group>"; };
+		0CB164542A8CF1B366DB0C2A /* SharedConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedConstants.swift; sourceTree = "<group>"; };
+		172005F5A3498DFF488FD1E9 /* SettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
+		189347E204C81FBF431E7486 /* TemplateEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateEditorView.swift; sourceTree = "<group>"; };
+		223FE85A2D504572DCFFEB8E /* TemplateStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateStorage.swift; sourceTree = "<group>"; };
+		2B2904D84A1311A579F6D0C8 /* TemplateListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateListView.swift; sourceTree = "<group>"; };
+		320635A3FEBA804CD8A63C51 /* JiggyClipper.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = JiggyClipper.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3243DBEE83FBC902B665DC6E /* ClippingEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClippingEngine.swift; sourceTree = "<group>"; };
+		32B094DC4C82EF105DCFDCC4 /* ObsidianLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObsidianLauncher.swift; sourceTree = "<group>"; };
+		3A729B286CA54FE770816316 /* HTMLFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTMLFetcher.swift; sourceTree = "<group>"; };
+		55106B929C7D96EA52A12C27 /* JiggyClipper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = JiggyClipper.entitlements; sourceTree = "<group>"; };
+		55B8E16DC095C38FB57109F8 /* ClipperExtension.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = ClipperExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		6735DF62D1D87592BFDB409A /* JSBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSBridge.swift; sourceTree = "<group>"; };
+		68E420BBBA96EF4D0EC6C624 /* PreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
+		74926C9B52C63E40C4EDFF57 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		7DC28267FD00BD05D74E7438 /* LLMConfigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLMConfigView.swift; sourceTree = "<group>"; };
+		83A5113935B0A97574252AC2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		874C427CA0558B12CF2F3657 /* LLMProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLMProvider.swift; sourceTree = "<group>"; };
+		8D16A0127B183B6A6F88C365 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		9FCDCF0DC505F8298AA33119 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		A6CC327F20A5D2AF2C109C46 /* TemplatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplatePickerView.swift; sourceTree = "<group>"; };
+		CBB8CDEBB67E6B997929BC61 /* clipper-core.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "clipper-core.js"; sourceTree = "<group>"; };
+		DA99EDA5F3A59154306C751D /* ClipRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipRequest.swift; sourceTree = "<group>"; };
+		E4A88AE85F75EE7F07A8DF41 /* ClipperExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ClipperExtension.entitlements; sourceTree = "<group>"; };
+		E5D35A7FB94BDD85893CB0C2 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		F721FD97A4DB1C06309B27CA /* Template.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Template.swift; sourceTree = "<group>"; };
+		F79DB6D55A293FA18856F9EE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FCF17028F50790AB91D6ADE9 /* ClipperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipperView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		1D6FD0934A06931E69A7781F /* ClipperExtension */ = {
+			isa = PBXGroup;
+			children = (
+				E4A88AE85F75EE7F07A8DF41 /* ClipperExtension.entitlements */,
+				9FCDCF0DC505F8298AA33119 /* Info.plist */,
+				8D16A0127B183B6A6F88C365 /* ShareViewController.swift */,
+				C55DEE03B1E3F88B0C6DE516 /* ClipperUI */,
+				4423F13814E3FD14E1F9BA13 /* Engine */,
+				7EE91F06E8DBB4C842FCF2A6 /* Resources */,
+			);
+			path = ClipperExtension;
+			sourceTree = "<group>";
+		};
+		4423F13814E3FD14E1F9BA13 /* Engine */ = {
+			isa = PBXGroup;
+			children = (
+				3243DBEE83FBC902B665DC6E /* ClippingEngine.swift */,
+				3A729B286CA54FE770816316 /* HTMLFetcher.swift */,
+				6735DF62D1D87592BFDB409A /* JSBridge.swift */,
+			);
+			path = Engine;
+			sourceTree = "<group>";
+		};
+		536285CCA5C5CBB442A389ED /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F79DB6D55A293FA18856F9EE /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		67975DD5F6084FE019EE0004 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7DC28267FD00BD05D74E7438 /* LLMConfigView.swift */,
+				E5D35A7FB94BDD85893CB0C2 /* SettingsView.swift */,
+				189347E204C81FBF431E7486 /* TemplateEditorView.swift */,
+				2B2904D84A1311A579F6D0C8 /* TemplateListView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		6CD9959A6E5A109077D4C82B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				DA99EDA5F3A59154306C751D /* ClipRequest.swift */,
+				874C427CA0558B12CF2F3657 /* LLMProvider.swift */,
+				0CB164542A8CF1B366DB0C2A /* SharedConstants.swift */,
+				F721FD97A4DB1C06309B27CA /* Template.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		7EE91F06E8DBB4C842FCF2A6 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				CBB8CDEBB67E6B997929BC61 /* clipper-core.js */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		7F22737F415FE772D9C869FA = {
+			isa = PBXGroup;
+			children = (
+				1D6FD0934A06931E69A7781F /* ClipperExtension */,
+				C7036261454CE3C1CF8B2EA0 /* JiggyClipper */,
+				AD50B49B37087AE1D52E3122 /* Shared */,
+				BB9784F19F55ADAA1FFF2C4D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A80B2E223CD65C6530462DDA /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				32B094DC4C82EF105DCFDCC4 /* ObsidianLauncher.swift */,
+				172005F5A3498DFF488FD1E9 /* SettingsManager.swift */,
+				223FE85A2D504572DCFFEB8E /* TemplateStorage.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		AD50B49B37087AE1D52E3122 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				6CD9959A6E5A109077D4C82B /* Models */,
+				D939CCDF1D245A21A5E04164 /* Storage */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		BB9784F19F55ADAA1FFF2C4D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				55B8E16DC095C38FB57109F8 /* ClipperExtension.appex */,
+				320635A3FEBA804CD8A63C51 /* JiggyClipper.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C3BC3B14347CA62E644F172A /* App */ = {
+			isa = PBXGroup;
+			children = (
+				83A5113935B0A97574252AC2 /* ContentView.swift */,
+				05BB5E4C33C54A073F482B0F /* JiggyClipperApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		C55DEE03B1E3F88B0C6DE516 /* ClipperUI */ = {
+			isa = PBXGroup;
+			children = (
+				FCF17028F50790AB91D6ADE9 /* ClipperView.swift */,
+				68E420BBBA96EF4D0EC6C624 /* PreviewView.swift */,
+				A6CC327F20A5D2AF2C109C46 /* TemplatePickerView.swift */,
+			);
+			path = ClipperUI;
+			sourceTree = "<group>";
+		};
+		C7036261454CE3C1CF8B2EA0 /* JiggyClipper */ = {
+			isa = PBXGroup;
+			children = (
+				74926C9B52C63E40C4EDFF57 /* Info.plist */,
+				55106B929C7D96EA52A12C27 /* JiggyClipper.entitlements */,
+				C3BC3B14347CA62E644F172A /* App */,
+				FB367921D5F7DB49F09C5123 /* Models */,
+				536285CCA5C5CBB442A389ED /* Resources */,
+				A80B2E223CD65C6530462DDA /* Services */,
+				67975DD5F6084FE019EE0004 /* Views */,
+			);
+			path = JiggyClipper;
+			sourceTree = "<group>";
+		};
+		D939CCDF1D245A21A5E04164 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				05670C41AF2D9BFC55CDD361 /* AppGroupManager.swift */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
+		FB367921D5F7DB49F09C5123 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8F07A745DC8001FA19AD3CAB /* JiggyClipper */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EF82BBFAAE6D4FA80B98FF1B /* Build configuration list for PBXNativeTarget "JiggyClipper" */;
+			buildPhases = (
+				4FF3892487D595C7971D6299 /* Sources */,
+				BA87F46E3F5CB58D36E079AE /* Resources */,
+				5C9C0AE97D336AF7F90045B9 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5B0BDD975B3BEEC21C26C003 /* PBXTargetDependency */,
+			);
+			name = JiggyClipper;
+			packageProductDependencies = (
+			);
+			productName = JiggyClipper;
+			productReference = 320635A3FEBA804CD8A63C51 /* JiggyClipper.app */;
+			productType = "com.apple.product-type.application";
+		};
+		ADD11CEE1098AA7EE36BC56E /* ClipperExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A83108342F8CACDD2168CD33 /* Build configuration list for PBXNativeTarget "ClipperExtension" */;
+			buildPhases = (
+				9F60D15DD61E738431E59732 /* Sources */,
+				AA45A9F320BFDB41FCD032E5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ClipperExtension;
+			packageProductDependencies = (
+			);
+			productName = ClipperExtension;
+			productReference = 55B8E16DC095C38FB57109F8 /* ClipperExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		56CEE9DBCB454A0051DB3E2A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					8F07A745DC8001FA19AD3CAB = {
+						DevelopmentTeam = "";
+					};
+					ADD11CEE1098AA7EE36BC56E = {
+						DevelopmentTeam = "";
+					};
+				};
+			};
+			buildConfigurationList = F953F0450E2E077E9F2DAD43 /* Build configuration list for PBXProject "JiggyClipper" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 7F22737F415FE772D9C869FA;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				ADD11CEE1098AA7EE36BC56E /* ClipperExtension */,
+				8F07A745DC8001FA19AD3CAB /* JiggyClipper */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AA45A9F320BFDB41FCD032E5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B74B01884A45BC2FCF8CBFA5 /* clipper-core.js in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BA87F46E3F5CB58D36E079AE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9341BA31029E0F4A17E7EFE1 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4FF3892487D595C7971D6299 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				19DBBC7A7227125047F865E2 /* AppGroupManager.swift in Sources */,
+				32378F66141AB010863ABDBE /* ClipRequest.swift in Sources */,
+				2599C5F7C7CFC22F6011C788 /* ContentView.swift in Sources */,
+				5E5BA00C5E7603B505C55B9F /* JiggyClipperApp.swift in Sources */,
+				5CEE1F7D59DF0A1FE7F1330D /* LLMConfigView.swift in Sources */,
+				DE1A0678689CC7A21D59448F /* LLMProvider.swift in Sources */,
+				ADF09E9BEE38F3409FB5FAB6 /* ObsidianLauncher.swift in Sources */,
+				E8E785AFE1D1F34FF86C9F42 /* SettingsManager.swift in Sources */,
+				B6B9E23A286953F524CC15B9 /* SettingsView.swift in Sources */,
+				4938FDFC3E8A614FAA8E0817 /* SharedConstants.swift in Sources */,
+				65E11B25FDFE2ACA8F85550F /* Template.swift in Sources */,
+				90B44CDC6D075757C639A9D3 /* TemplateEditorView.swift in Sources */,
+				A01FB60575E465F4F7C0DC40 /* TemplateListView.swift in Sources */,
+				98062C18621D7F9C4954717C /* TemplateStorage.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9F60D15DD61E738431E59732 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C94C8A9668CF606BD1E9F3F4 /* AppGroupManager.swift in Sources */,
+				6E9107DBD42F195ECAA0D600 /* ClipRequest.swift in Sources */,
+				401AC73B2BA298FC8B38AAA0 /* ClipperView.swift in Sources */,
+				894B939FA05C3CAF3C47800A /* ClippingEngine.swift in Sources */,
+				8D54F936240B60ED17730539 /* HTMLFetcher.swift in Sources */,
+				562F05D4DF75C0308262643A /* JSBridge.swift in Sources */,
+				B6376DE5F06145CB5524976D /* LLMProvider.swift in Sources */,
+				448E69E8DB11446143D9F1EA /* PreviewView.swift in Sources */,
+				BD1B22ED21D29CBAD3D3A4C5 /* ShareViewController.swift in Sources */,
+				CB2D189E255902330F3D5AF2 /* SharedConstants.swift in Sources */,
+				B7EC2B1C05D6E098F558879B /* Template.swift in Sources */,
+				725CC4564BD0DBC01DBF4EDC /* TemplatePickerView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5B0BDD975B3BEEC21C26C003 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = ADD11CEE1098AA7EE36BC56E /* ClipperExtension */;
+			targetProxy = 16D22289ECF27294D9CDE76C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		09140DF7BBFD0835D440C807 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Release;
+		};
+		34F29AB4C21F0D80E58B646B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Debug;
+		};
+		446655D6EEB05048E2CED865 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = ClipperExtension/ClipperExtension.entitlements;
+				INFOPLIST_FILE = ClipperExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.edequalsawesome.jiggyclipper.clipper-extension";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		4625252C605B64BC3F56C996 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = JiggyClipper/JiggyClipper.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = JiggyClipper/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.edequalsawesome.jiggyclipper;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		6B1ECF5DFBDA0DD4EE3D7905 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = JiggyClipper/JiggyClipper.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = JiggyClipper/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.edequalsawesome.jiggyclipper;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		DE79284E3AAD6FAC10F93498 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = ClipperExtension/ClipperExtension.entitlements;
+				INFOPLIST_FILE = ClipperExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.edequalsawesome.jiggyclipper.clipper-extension";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A83108342F8CACDD2168CD33 /* Build configuration list for PBXNativeTarget "ClipperExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DE79284E3AAD6FAC10F93498 /* Debug */,
+				446655D6EEB05048E2CED865 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		EF82BBFAAE6D4FA80B98FF1B /* Build configuration list for PBXNativeTarget "JiggyClipper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6B1ECF5DFBDA0DD4EE3D7905 /* Debug */,
+				4625252C605B64BC3F56C996 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		F953F0450E2E077E9F2DAD43 /* Build configuration list for PBXProject "JiggyClipper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				34F29AB4C21F0D80E58B646B /* Debug */,
+				09140DF7BBFD0835D440C807 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 56CEE9DBCB454A0051DB3E2A /* Project object */;
+}

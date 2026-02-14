@@ -1,0 +1,68 @@
+name: JiggyClipper
+options:
+  bundleIdPrefix: com.edequalsawesome
+  deploymentTarget:
+    iOS: "16.0"
+  xcodeVersion: "15.0"
+  generateEmptyDirectories: true
+
+settings:
+  base:
+    SWIFT_VERSION: "5.9"
+    DEVELOPMENT_TEAM: ""
+
+targets:
+  JiggyClipper:
+    type: application
+    platform: iOS
+    sources:
+      - path: JiggyClipper
+      - path: Shared
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.edequalsawesome.jiggyclipper
+        INFOPLIST_FILE: JiggyClipper/Info.plist
+        CODE_SIGN_ENTITLEMENTS: JiggyClipper/JiggyClipper.entitlements
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+    dependencies:
+      - target: ClipperExtension
+    entitlements:
+      path: JiggyClipper/JiggyClipper.entitlements
+      properties:
+        com.apple.security.application-groups:
+          - group.com.edequalsawesome.jiggyclipper
+
+  ClipperExtension:
+    type: app-extension
+    platform: iOS
+    sources:
+      - path: ClipperExtension
+      - path: Shared
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.edequalsawesome.jiggyclipper.clipper-extension
+        INFOPLIST_FILE: ClipperExtension/Info.plist
+        CODE_SIGN_ENTITLEMENTS: ClipperExtension/ClipperExtension.entitlements
+        SKIP_INSTALL: YES
+    entitlements:
+      path: ClipperExtension/ClipperExtension.entitlements
+      properties:
+        com.apple.security.application-groups:
+          - group.com.edequalsawesome.jiggyclipper
+
+schemes:
+  JiggyClipper:
+    build:
+      targets:
+        JiggyClipper: all
+        ClipperExtension: all
+    run:
+      config: Debug
+    test:
+      config: Debug
+    profile:
+      config: Release
+    analyze:
+      config: Debug
+    archive:
+      config: Release
