@@ -62,16 +62,73 @@ JiggyClipperPreprocessor.prototype = {
         // Extract site name
         result.site = meta['og:site_name'] || '';
 
-        // Try to extract main content (basic heuristics)
-        var mainContent = document.querySelector('article') ||
-                          document.querySelector('main') ||
-                          document.querySelector('[role="main"]') ||
-                          document.querySelector('.post-content') ||
-                          document.querySelector('.article-content') ||
-                          document.querySelector('.entry-content');
+        // Try to extract main content with better heuristics
+        // Priority order: most specific content classes first
+        var contentSelectors = [
+            // Specific content container classes (highest priority)
+            '.post-content',
+            '.article-content',
+            '.entry-content',
+            '.content-body',
+            '.article-body',
+            '.post-body',
+            '.story-body',
+            '.main-content',
+            '.page-content',
+            '.single-content',
+            // WordPress specific
+            '.wp-block-post-content',
+            '.hentry .entry-content',
+            // Medium
+            'article section',
+            // Substack
+            '.post-content-wrapper',
+            '.body.markup',
+            // Generic article within main
+            'main article',
+            'article[role="article"]',
+            // Then try broader selectors
+            'article',
+            'main',
+            '[role="main"]',
+            '#content',
+            '#main-content',
+            '.content'
+        ];
+
+        var mainContent = null;
+        for (var i = 0; i < contentSelectors.length; i++) {
+            var el = document.querySelector(contentSelectors[i]);
+            if (el) {
+                mainContent = el;
+                break;
+            }
+        }
 
         if (mainContent) {
-            result.contentHtml = mainContent.innerHTML;
+            // Clone the content and remove unwanted nested elements
+            var contentClone = mainContent.cloneNode(true);
+            var removeSelectors = [
+                'nav', 'footer', 'aside', 'header',
+                'script', 'style', 'noscript', 'iframe',
+                '.sidebar', '.side-bar', '.widget', '.widgets',
+                '.comments', '.comment-section', '#comments',
+                '.advertisement', '.ad', '.ads', '[class*="advert"]',
+                '.social-share', '.share-buttons', '.sharing',
+                '.related-posts', '.related-articles', '.recommended',
+                '.newsletter', '.subscribe', '.subscription',
+                '.author-bio', '.author-box',
+                '.navigation', '.nav', '.menu', '.breadcrumb',
+                '.tags', '.categories', '.meta-info',
+                '[role="complementary"]', '[role="navigation"]'
+            ];
+            removeSelectors.forEach(function(selector) {
+                try {
+                    var elements = contentClone.querySelectorAll(selector);
+                    elements.forEach(function(el) { el.remove(); });
+                } catch(e) {}
+            });
+            result.contentHtml = contentClone.innerHTML;
         } else {
             // Fallback: get body without nav, footer, aside, header
             var body = document.body.cloneNode(true);
