@@ -1,27 +1,55 @@
 import SwiftUI
+import UniformTypeIdentifiers
 
 struct SettingsView: View {
-    @AppStorage("defaultVault", store: AppGroupManager.shared.userDefaults)
-    private var defaultVault: String = ""
+    @State private var vaultName: String? = VaultManager.shared.vaultName
+    @State private var showingFolderPicker = false
+    @State private var showingError = false
+    @State private var errorMessage = ""
 
-    @AppStorage("defaultTemplate", store: AppGroupManager.shared.userDefaults)
-    private var defaultTemplate: String = ""
+    @AppStorage("dailyNotesPath", store: AppGroupManager.shared.userDefaults)
+    private var dailyNotesPath: String = ""
 
     @AppStorage("autoClip", store: AppGroupManager.shared.userDefaults)
     private var autoClip: Bool = false
 
-    @State private var showingVaultHelp = false
-
     var body: some View {
         Form {
             Section {
-                TextField("Vault Name", text: $defaultVault)
+                HStack {
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text("Vault Folder")
+                            .font(.body)
+                        if let name = vaultName {
+                            Text(name)
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                        } else {
+                            Text("Not selected")
+                                .font(.caption)
+                                .foregroundStyle(.orange)
+                        }
+                    }
+                    Spacer()
+                    Button(vaultName == nil ? "Select" : "Change") {
+                        showingFolderPicker = true
+                    }
+                    .buttonStyle(.bordered)
+                }
+            } header: {
+                Text("Obsidian Vault")
+            } footer: {
+                Text("Select your Obsidian vault folder to enable direct file saving")
+            }
+
+            Section {
+                TextField("Daily Notes Path", text: $dailyNotesPath)
                     .textInputAutocapitalization(.never)
                     .autocorrectionDisabled()
             } header: {
-                Text("Default Vault")
+                Text("Daily Notes")
             } footer: {
-                Text("The name of your Obsidian vault (case-sensitive)")
+                Text("Path to daily notes folder within your vault (e.g., \"Daily\" or \"Journal/Daily\")")
             }
 
             Section {
@@ -29,27 +57,85 @@ struct SettingsView: View {
             } header: {
                 Text("Behavior")
             } footer: {
-                Text("When enabled, clips will be sent directly to Obsidian using the default template")
+                Text("When enabled, clips will be sent directly using the default template")
             }
 
-            Section {
-                Button("Open Obsidian") {
-                    ObsidianLauncher.shared.openObsidian()
-                }
+            if vaultName != nil {
+                Section {
+                    Button("Test Write Access") {
+                        testWriteAccess()
+                    }
 
-                Button("Test Connection") {
-                    testObsidianConnection()
+                    Button("Clear Vault Selection", role: .destructive) {
+                        VaultManager.shared.clearVault()
+                        vaultName = nil
+                    }
+                } header: {
+                    Text("Vault Access")
                 }
-            } header: {
-                Text("Obsidian")
             }
         }
         .navigationTitle("Settings")
+        .sheet(isPresented: $showingFolderPicker) {
+            FolderPickerView { url in
+                do {
+                    try VaultManager.shared.saveVaultBookmark(for: url)
+                    vaultName = VaultManager.shared.vaultName
+                } catch {
+                    errorMessage = error.localizedDescription
+                    showingError = true
+                }
+            }
+        }
+        .alert("Error", isPresented: $showingError) {
+            Button("OK") {}
+        } message: {
+            Text(errorMessage)
+        }
     }
 
-    private func testObsidianConnection() {
-        // Try to open Obsidian to verify it's installed
-        ObsidianLauncher.shared.openObsidian()
+    private func testWriteAccess() {
+        do {
+            try VaultManager.shared.writeNote(
+                name: ".jiggyclipper-test",
+                content: "Test file created by JiggyClipper. You can delete this."
+            )
+            errorMessage = "Write access verified successfully."
+            showingError = true
+        } catch {
+            errorMessage = "Write test failed: \(error.localizedDescription)"
+            showingError = true
+        }
+    }
+}
+
+struct FolderPickerView: UIViewControllerRepresentable {
+    let onSelect: (URL) -> Void
+
+    func makeUIViewController(context: Context) -> UIDocumentPickerViewController {
+        let picker = UIDocumentPickerViewController(forOpeningContentTypes: [.folder])
+        picker.delegate = context.coordinator
+        picker.allowsMultipleSelection = false
+        return picker
+    }
+
+    func updateUIViewController(_ uiViewController: UIDocumentPickerViewController, context: Context) {}
+
+    func makeCoordinator() -> Coordinator {
+        Coordinator(onSelect: onSelect)
+    }
+
+    class Coordinator: NSObject, UIDocumentPickerDelegate {
+        let onSelect: (URL) -> Void
+
+        init(onSelect: @escaping (URL) -> Void) {
+            self.onSelect = onSelect
+        }
+
+        func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+            guard let url = urls.first else { return }
+            onSelect(url)
+        }
     }
 }
 

@@ -6,6 +6,9 @@ struct ClipperView: View {
 
     @StateObject private var viewModel = ClipperViewModel()
     @State private var selectedTemplateId: String?
+    @State private var showingError = false
+    @State private var errorMessage = ""
+    @State private var showingSuccess = false
 
     var body: some View {
         NavigationStack {
@@ -31,11 +34,27 @@ struct ClipperView: View {
                     Button("Clip") {
                         clipContent()
                     }
-                    .disabled(viewModel.isLoading || viewModel.preview.isEmpty)
+                    .disabled(viewModel.isLoading || viewModel.preview.isEmpty || !VaultManager.shared.hasVault)
                 }
             }
             .task {
                 await loadContent()
+            }
+            .alert("Error", isPresented: $showingError) {
+                Button("OK") {
+                    if !VaultManager.shared.hasVault {
+                        dismiss()
+                    }
+                }
+            } message: {
+                Text(errorMessage)
+            }
+            .alert("Clipped!", isPresented: $showingSuccess) {
+                Button("Done") {
+                    dismiss()
+                }
+            } message: {
+                Text("Note saved to your vault")
             }
         }
     }
@@ -70,6 +89,19 @@ struct ClipperView: View {
 
     private var contentView: some View {
         VStack(spacing: 0) {
+            // Vault status warning
+            if !VaultManager.shared.hasVault {
+                HStack {
+                    Image(systemName: "exclamationmark.triangle.fill")
+                        .foregroundStyle(.orange)
+                    Text("Select a vault folder in the JiggyClipper app first")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
+                .padding()
+                .background(Color(.systemYellow).opacity(0.2))
+            }
+
             // URL display
             if let url = viewModel.pageURL {
                 HStack {
@@ -119,14 +151,59 @@ struct ClipperView: View {
 
     private func clipContent() {
         guard let clipRequest = viewModel.createClipRequest(templateId: selectedTemplateId) else {
+            errorMessage = "Failed to create clip request"
+            showingError = true
             return
         }
 
-        // Store the clip request for the main app to process
-        AppGroupManager.shared.setPendingClip(clipRequest)
+        // Write directly to vault
+        do {
+            switch clipRequest.behavior {
+            case .create, .overwrite:
+                try VaultManager.shared.writeNote(
+                    name: clipRequest.noteName,
+                    content: clipRequest.content,
+                    path: clipRequest.path
+                )
 
-        // Dismiss the extension
-        dismiss()
+            case .appendSpecific:
+                try VaultManager.shared.appendToNote(
+                    name: clipRequest.noteName,
+                    content: clipRequest.content,
+                    path: clipRequest.path
+                )
+
+            case .prependSpecific:
+                try VaultManager.shared.prependToNote(
+                    name: clipRequest.noteName,
+                    content: clipRequest.content,
+                    path: clipRequest.path
+                )
+
+            case .appendDaily:
+                let dailyPath = AppGroupManager.shared.getString(forKey: "dailyNotesPath") ?? ""
+                let dailyName = VaultManager.shared.getDailyNotePath()
+                try VaultManager.shared.appendToNote(
+                    name: dailyName,
+                    content: clipRequest.content,
+                    path: dailyPath
+                )
+
+            case .prependDaily:
+                let dailyPath = AppGroupManager.shared.getString(forKey: "dailyNotesPath") ?? ""
+                let dailyName = VaultManager.shared.getDailyNotePath()
+                try VaultManager.shared.prependToNote(
+                    name: dailyName,
+                    content: clipRequest.content,
+                    path: dailyPath
+                )
+            }
+
+            showingSuccess = true
+        } catch {
+            errorMessage = error.localizedDescription
+            showingError = true
+        }
     }
 }
 
@@ -217,7 +294,7 @@ class ClipperViewModel: ObservableObject {
                 noteName = variables.noteName
             }
             path = template.path
-            vault = template.vault ?? SettingsManager.shared.defaultVault
+            vault = template.vault
             behavior = template.behavior
         } else {
             content = """
@@ -229,7 +306,7 @@ class ClipperViewModel: ObservableObject {
             """
             noteName = variables.noteName
             path = ""
-            vault = SettingsManager.shared.defaultVault
+            vault = nil
             behavior = .create
         }
 

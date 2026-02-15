@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 63;
+	objectVersion = 77;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		13385F4ABD0221C55EDE1B88 /* VaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20041C3AD579852720D290E2 /* VaultManager.swift */; };
 		19DBBC7A7227125047F865E2 /* AppGroupManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05670C41AF2D9BFC55CDD361 /* AppGroupManager.swift */; };
 		2599C5F7C7CFC22F6011C788 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A5113935B0A97574252AC2 /* ContentView.swift */; };
 		32378F66141AB010863ABDBE /* ClipRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA99EDA5F3A59154306C751D /* ClipRequest.swift */; };
@@ -29,6 +30,7 @@
 		B200839B88803C8A55D7DCEC /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616579E406CF334CDE7C7319 /* SettingsManager.swift */; };
 		B6376DE5F06145CB5524976D /* LLMProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874C427CA0558B12CF2F3657 /* LLMProvider.swift */; };
 		B6B9E23A286953F524CC15B9 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D35A7FB94BDD85893CB0C2 /* SettingsView.swift */; };
+		B7093C7393658FBDDCDD8BAE /* VaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20041C3AD579852720D290E2 /* VaultManager.swift */; };
 		B74B01884A45BC2FCF8CBFA5 /* clipper-core.js in Resources */ = {isa = PBXBuildFile; fileRef = CBB8CDEBB67E6B997929BC61 /* clipper-core.js */; };
 		B7EC2B1C05D6E098F558879B /* Template.swift in Sources */ = {isa = PBXBuildFile; fileRef = F721FD97A4DB1C06309B27CA /* Template.swift */; };
 		BD1B22ED21D29CBAD3D3A4C5 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D16A0127B183B6A6F88C365 /* ShareViewController.swift */; };
@@ -69,13 +71,14 @@
 		05BB5E4C33C54A073F482B0F /* JiggyClipperApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JiggyClipperApp.swift; sourceTree = "<group>"; };
 		0CB164542A8CF1B366DB0C2A /* SharedConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedConstants.swift; sourceTree = "<group>"; };
 		189347E204C81FBF431E7486 /* TemplateEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateEditorView.swift; sourceTree = "<group>"; };
+		20041C3AD579852720D290E2 /* VaultManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaultManager.swift; sourceTree = "<group>"; };
 		2B2904D84A1311A579F6D0C8 /* TemplateListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateListView.swift; sourceTree = "<group>"; };
 		320635A3FEBA804CD8A63C51 /* JiggyClipper.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = JiggyClipper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3243DBEE83FBC902B665DC6E /* ClippingEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClippingEngine.swift; sourceTree = "<group>"; };
 		32B094DC4C82EF105DCFDCC4 /* ObsidianLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObsidianLauncher.swift; sourceTree = "<group>"; };
 		3A729B286CA54FE770816316 /* HTMLFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTMLFetcher.swift; sourceTree = "<group>"; };
 		55106B929C7D96EA52A12C27 /* JiggyClipper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = JiggyClipper.entitlements; sourceTree = "<group>"; };
-		55B8E16DC095C38FB57109F8 /* ClipperExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ClipperExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		55B8E16DC095C38FB57109F8 /* ClipperExtension.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = ClipperExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		616579E406CF334CDE7C7319 /* SettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
 		6735DF62D1D87592BFDB409A /* JSBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSBridge.swift; sourceTree = "<group>"; };
 		68E420BBBA96EF4D0EC6C624 /* PreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
@@ -233,6 +236,7 @@
 				05670C41AF2D9BFC55CDD361 /* AppGroupManager.swift */,
 				616579E406CF334CDE7C7319 /* SettingsManager.swift */,
 				FA0AD860218A46029FFF432F /* TemplateStorage.swift */,
+				20041C3AD579852720D290E2 /* VaultManager.swift */,
 			);
 			path = Storage;
 			sourceTree = "<group>";
@@ -297,6 +301,9 @@
 					8F07A745DC8001FA19AD3CAB = {
 						DevelopmentTeam = "";
 					};
+					ADD11CEE1098AA7EE36BC56E = {
+						DevelopmentTeam = "";
+					};
 				};
 			};
 			buildConfigurationList = F953F0450E2E077E9F2DAD43 /* Build configuration list for PBXProject "JiggyClipper" */;
@@ -309,6 +316,7 @@
 			);
 			mainGroup = 7F22737F415FE772D9C869FA;
 			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -356,6 +364,7 @@
 				90B44CDC6D075757C639A9D3 /* TemplateEditorView.swift in Sources */,
 				A01FB60575E465F4F7C0DC40 /* TemplateListView.swift in Sources */,
 				F99F3272A48B4559DAAFB107 /* TemplateStorage.swift in Sources */,
+				B7093C7393658FBDDCDD8BAE /* VaultManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -377,6 +386,7 @@
 				B7EC2B1C05D6E098F558879B /* Template.swift in Sources */,
 				725CC4564BD0DBC01DBF4EDC /* TemplatePickerView.swift in Sources */,
 				D23F74A4DD84B37A15108522 /* TemplateStorage.swift in Sources */,
+				13385F4ABD0221C55EDE1B88 /* VaultManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -516,7 +526,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ClipperExtension/ClipperExtension.entitlements;
-				DEVELOPMENT_TEAM = CLRXR9WBXQ;
 				INFOPLIST_FILE = ClipperExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -568,7 +577,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ClipperExtension/ClipperExtension.entitlements;
-				DEVELOPMENT_TEAM = CLRXR9WBXQ;
 				INFOPLIST_FILE = ClipperExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
