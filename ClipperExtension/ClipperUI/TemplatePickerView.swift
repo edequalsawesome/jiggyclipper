@@ -4,7 +4,7 @@ struct TemplatePickerView: View {
     @Binding var selectedTemplateId: String?
     let onSelectionChange: (String?) -> Void
 
-    @StateObject private var templateStorage = TemplateStorage.shared
+    @ObservedObject private var templateStorage = TemplateStorage.shared
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {

@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct LLMConfigView: View {
-    @StateObject private var storage = LLMProviderStorage.shared
+    @ObservedObject private var storage = LLMProviderStorage.shared
     @State private var showingAddProvider = false
     @State private var selectedProvider: LLMProvider?
 
@@ -125,7 +125,7 @@ struct LLMProviderEditorView: View {
                     Text("OpenRouter").tag("openrouter")
                     Text("Custom").tag("custom")
                 }
-                .onChange(of: providerId) { _, newValue in
+                .onChange(of: providerId) { newValue in
                     updateBaseURL(for: newValue)
                 }
             }

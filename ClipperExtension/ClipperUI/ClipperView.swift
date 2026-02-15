@@ -202,8 +202,8 @@ class ClipperViewModel: ObservableObject {
         let template = templateId.flatMap { TemplateStorage.shared.getTemplate(byId: $0) }
             ?? TemplateStorage.shared.getDefaultTemplate()
 
-        let content: String
-        let noteName: String
+        var content: String
+        var noteName: String
         let path: String
         let vault: String?
         let behavior: TemplateBehavior

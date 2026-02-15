@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct TemplateListView: View {
-    @StateObject private var templateStorage = TemplateStorage.shared
+    @ObservedObject private var templateStorage = TemplateStorage.shared
     @State private var showingImportSheet = false
     @State private var importText = ""
     @State private var showingEditor = false
