@@ -135,16 +135,22 @@ struct ClipperView: View {
     }
 
     private func loadContent() async {
-        // First try to get preprocessed content from Safari (includes authenticated content)
-        if let preprocessed = await ShareViewController.extractPreprocessedContent(from: extensionContext) {
+        // TODO: Re-enable Safari preprocessing once debugged
+        // For now, always use URLSession to isolate frontmatter rendering issue
+        /*
+        if let preprocessed = await ShareViewController.extractPreprocessedContent(from: extensionContext),
+           !preprocessed.html.isEmpty || !preprocessed.contentHtml.isEmpty {
             await viewModel.loadFromPreprocessed(preprocessed)
-        } else if let url = await ShareViewController.extractURL(from: extensionContext) {
-            // Fallback to fetching via URLSession (for non-Safari shares)
-            await viewModel.loadPage(url: url)
         } else {
+        */
+
+        guard let url = await ShareViewController.extractURL(from: extensionContext) else {
             viewModel.error = "Could not extract URL from shared content"
             return
         }
+        await viewModel.loadPage(url: url)
+
+        // }
 
         // Select default template
         if let defaultTemplate = TemplateStorage.shared.getDefaultTemplate() {
