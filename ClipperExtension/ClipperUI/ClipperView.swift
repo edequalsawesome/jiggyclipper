@@ -135,12 +135,16 @@ struct ClipperView: View {
     }
 
     private func loadContent() async {
-        guard let url = await ShareViewController.extractURL(from: extensionContext) else {
+        // First try to get preprocessed content from Safari (includes authenticated content)
+        if let preprocessed = await ShareViewController.extractPreprocessedContent(from: extensionContext) {
+            await viewModel.loadFromPreprocessed(preprocessed)
+        } else if let url = await ShareViewController.extractURL(from: extensionContext) {
+            // Fallback to fetching via URLSession (for non-Safari shares)
+            await viewModel.loadPage(url: url)
+        } else {
             viewModel.error = "Could not extract URL from shared content"
             return
         }
-
-        await viewModel.loadPage(url: url)
 
         // Select default template
         if let defaultTemplate = TemplateStorage.shared.getDefaultTemplate() {
@@ -232,6 +236,52 @@ class ClipperViewModel: ObservableObject {
 
             // Extract content
             extractedVariables = try clippingEngine?.extractContent(html: html, url: url.absoluteString)
+
+            isLoading = false
+        } catch {
+            self.error = error.localizedDescription
+            isLoading = false
+        }
+    }
+
+    @MainActor
+    func loadFromPreprocessed(_ content: PreprocessedContent) async {
+        isLoading = true
+        error = nil
+        pageURL = content.url
+
+        do {
+            // Initialize clipping engine
+            clippingEngine = ClippingEngine()
+            try clippingEngine?.initialize()
+
+            // Use preprocessed content directly - it already has the authenticated HTML
+            let html = content.contentHtml.isEmpty ? content.html : content.contentHtml
+            extractedVariables = try clippingEngine?.extractContent(html: html, url: content.url.absoluteString)
+
+            // Override with preprocessed metadata if available
+            if var variables = extractedVariables {
+                if !content.title.isEmpty {
+                    variables.title = content.title
+                    variables.noteName = ClipVariables.sanitizeNoteName(content.title)
+                }
+                if let author = content.author, !author.isEmpty {
+                    variables.author = author
+                }
+                if let description = content.description, !description.isEmpty {
+                    variables.description = description
+                }
+                if let published = content.published, !published.isEmpty {
+                    variables.published = published
+                }
+                if let image = content.image, !image.isEmpty {
+                    variables.image = image
+                }
+                if let site = content.site, !site.isEmpty {
+                    variables.site = site
+                }
+                extractedVariables = variables
+            }
 
             isLoading = false
         } catch {

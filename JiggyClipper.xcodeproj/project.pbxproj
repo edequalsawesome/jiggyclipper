@@ -20,6 +20,7 @@
 		5E5BA00C5E7603B505C55B9F /* JiggyClipperApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BB5E4C33C54A073F482B0F /* JiggyClipperApp.swift */; };
 		65E11B25FDFE2ACA8F85550F /* Template.swift in Sources */ = {isa = PBXBuildFile; fileRef = F721FD97A4DB1C06309B27CA /* Template.swift */; };
 		6E9107DBD42F195ECAA0D600 /* ClipRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA99EDA5F3A59154306C751D /* ClipRequest.swift */; };
+		723B8EEF4046BE297463044D /* PreprocessingScript.js in Resources */ = {isa = PBXBuildFile; fileRef = 58895EB938829C1A817DC717 /* PreprocessingScript.js */; };
 		725CC4564BD0DBC01DBF4EDC /* TemplatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6CC327F20A5D2AF2C109C46 /* TemplatePickerView.swift */; };
 		894B939FA05C3CAF3C47800A /* ClippingEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3243DBEE83FBC902B665DC6E /* ClippingEngine.swift */; };
 		8D54F936240B60ED17730539 /* HTMLFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A729B286CA54FE770816316 /* HTMLFetcher.swift */; };
@@ -79,6 +80,7 @@
 		3A729B286CA54FE770816316 /* HTMLFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTMLFetcher.swift; sourceTree = "<group>"; };
 		55106B929C7D96EA52A12C27 /* JiggyClipper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = JiggyClipper.entitlements; sourceTree = "<group>"; };
 		55B8E16DC095C38FB57109F8 /* ClipperExtension.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = ClipperExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		58895EB938829C1A817DC717 /* PreprocessingScript.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = PreprocessingScript.js; sourceTree = "<group>"; };
 		616579E406CF334CDE7C7319 /* SettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
 		6735DF62D1D87592BFDB409A /* JSBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSBridge.swift; sourceTree = "<group>"; };
 		68E420BBBA96EF4D0EC6C624 /* PreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				CBB8CDEBB67E6B997929BC61 /* clipper-core.js */,
+				58895EB938829C1A817DC717 /* PreprocessingScript.js */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -331,6 +334,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				723B8EEF4046BE297463044D /* PreprocessingScript.js in Resources */,
 				B74B01884A45BC2FCF8CBFA5 /* clipper-core.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

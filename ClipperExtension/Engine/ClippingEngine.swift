@@ -187,14 +187,13 @@ class ClippingEngine {
                     }
                 }
 
-                // Handle filters (basic implementation)
+                // Handle date filter: {{var|date:"FORMAT"}}
                 result = result.replace(/\\{\\{([^|]+)\\|\\s*date\\s*:\\s*"([^"]+)"\\}\\}/g, function(match, varName, format) {
                     var value = variables[varName.trim()];
                     if (value) {
                         try {
                             var date = new Date(value);
-                            // Basic date formatting
-                            return date.toISOString().split('T')[0];
+                            return formatDate(date, format);
                         } catch (e) {
                             return value;
                         }
@@ -202,7 +201,27 @@ class ClippingEngine {
                     return '';
                 });
 
+                // Clean up any remaining unresolved filter expressions
+                result = result.replace(/\\{\\{[^}]+\\|[^}]+\\}\\}/g, '');
+
                 return result;
+            },
+
+            formatDate: function(date, format) {
+                var year = date.getFullYear();
+                var month = String(date.getMonth() + 1).padStart(2, '0');
+                var day = String(date.getDate()).padStart(2, '0');
+                var hours = String(date.getHours()).padStart(2, '0');
+                var minutes = String(date.getMinutes()).padStart(2, '0');
+                var seconds = String(date.getSeconds()).padStart(2, '0');
+
+                return format
+                    .replace('YYYY', year)
+                    .replace('MM', month)
+                    .replace('DD', day)
+                    .replace('HH', hours)
+                    .replace('mm', minutes)
+                    .replace('ss', seconds);
             },
 
             renderString: function(templateString, variables) {
@@ -238,7 +257,58 @@ class ClippingEngine {
     }
 
     func renderTemplate(_ template: Template, with variables: ClipVariables) throws -> String {
-        return try renderString(template.noteContentFormat, with: variables)
+        var output = ""
+
+        // Render properties as YAML frontmatter if present
+        if !template.properties.isEmpty {
+            output += "---\n"
+            for property in template.properties {
+                let renderedValue = try renderString(property.value, with: variables)
+                // Skip empty values and LLM prompts (those starting with {{")
+                if renderedValue.isEmpty || property.value.hasPrefix("{{\"") {
+                    continue
+                }
+                // Format based on property type
+                switch property.type {
+                case .multitext:
+                    // Multitext becomes a YAML array
+                    let items = renderedValue.components(separatedBy: ",").map { $0.trimmingCharacters(in: .whitespaces) }
+                    if items.count == 1 {
+                        output += "\(property.name): \(escapeYAMLValue(items[0]))\n"
+                    } else {
+                        output += "\(property.name):\n"
+                        for item in items where !item.isEmpty {
+                            output += "  - \(escapeYAMLValue(item))\n"
+                        }
+                    }
+                case .checkbox:
+                    output += "\(property.name): \(renderedValue.lowercased() == "true")\n"
+                default:
+                    output += "\(property.name): \(escapeYAMLValue(renderedValue))\n"
+                }
+            }
+            output += "---\n\n"
+        }
+
+        // Render the note content
+        output += try renderString(template.noteContentFormat, with: variables)
+
+        return output
+    }
+
+    private func escapeYAMLValue(_ value: String) -> String {
+        // If value contains special characters, wrap in quotes
+        let needsQuotes = value.contains(":") || value.contains("#") ||
+                          value.contains("\"") || value.contains("'") ||
+                          value.contains("\n") || value.hasPrefix(" ") ||
+                          value.hasSuffix(" ") || value.hasPrefix("[") ||
+                          value.hasPrefix("{")
+        if needsQuotes {
+            // Escape quotes and wrap
+            let escaped = value.replacingOccurrences(of: "\"", with: "\\\"")
+            return "\"\(escaped)\""
+        }
+        return value
     }
 
     func renderString(_ templateString: String, with variables: ClipVariables) throws -> String {
@@ -252,14 +322,20 @@ class ClippingEngine {
             "url": variables.url,
             "content": variables.content,
             "contentHtml": variables.contentHtml,
+            "selection": variables.selection ?? "",
+            "selectionHtml": variables.selectionHtml ?? "",
             "author": variables.author ?? "",
             "description": variables.description ?? "",
             "domain": variables.domain,
+            "favicon": variables.favicon ?? "",
+            "image": variables.image ?? "",
+            "site": variables.site ?? "",
             "date": variables.date,
             "time": variables.time,
             "published": variables.published ?? "",
             "words": variables.words,
-            "noteName": variables.noteName
+            "noteName": variables.noteName,
+            "fullHtml": variables.fullHtml ?? ""
         ]
 
         context.setObject(templateString, forKeyedSubscript: "templateInput" as NSString)

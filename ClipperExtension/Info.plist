@@ -31,6 +31,8 @@
 				<key>NSExtensionActivationSupportsText</key>
 				<true/>
 			</dict>
+			<key>NSExtensionJavaScriptPreprocessingFile</key>
+			<string>PreprocessingScript</string>
 		</dict>
 		<key>NSExtensionPointIdentifier</key>
 		<string>com.apple.share-services</string>
