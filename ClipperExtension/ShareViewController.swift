@@ -103,7 +103,7 @@ extension ShareViewController {
         )
     }
 
-    /// Fallback: Extract just the URL (for non-Safari shares)
+    /// Extract URL from extension context (handles both Safari preprocessing and direct URL shares)
     static func extractURL(from extensionContext: NSExtensionContext?) async -> URL? {
         guard let extensionContext = extensionContext,
               let inputItems = extensionContext.inputItems as? [NSExtensionItem] else {
@@ -114,7 +114,29 @@ extension ShareViewController {
             guard let attachments = inputItem.attachments else { continue }
 
             for attachment in attachments {
-                // Try URL first
+                // Try property-list first (Safari with JS preprocessing sends URL here)
+                if attachment.hasItemConformingToTypeIdentifier("com.apple.property-list") {
+                    do {
+                        let item = try await attachment.loadItem(forTypeIdentifier: "com.apple.property-list")
+                        if let dict = item as? [String: Any] {
+                            // Check for JS preprocessing results
+                            if let jsResults = dict[NSExtensionJavaScriptPreprocessingResultsKey] as? [String: Any],
+                               let urlString = jsResults["url"] as? String,
+                               let url = URL(string: urlString) {
+                                return url
+                            }
+                            // Or direct URL in the dict
+                            if let urlString = dict["url"] as? String,
+                               let url = URL(string: urlString) {
+                                return url
+                            }
+                        }
+                    } catch {
+                        print("Failed to load property-list: \(error)")
+                    }
+                }
+
+                // Try URL type
                 if attachment.hasItemConformingToTypeIdentifier(UTType.url.identifier) {
                     do {
                         let item = try await attachment.loadItem(forTypeIdentifier: UTType.url.identifier)
