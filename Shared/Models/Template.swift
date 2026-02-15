@@ -11,6 +11,7 @@ struct Template: Codable, Identifiable, Equatable {
     var triggers: [String]?
     var vault: String?
     var context: String?
+    var schemaVersion: String?
 
     init(
         id: String = UUID().uuidString,
@@ -22,7 +23,8 @@ struct Template: Codable, Identifiable, Equatable {
         properties: [TemplateProperty] = [],
         triggers: [String]? = nil,
         vault: String? = nil,
-        context: String? = nil
+        context: String? = nil,
+        schemaVersion: String? = nil
     ) {
         self.id = id
         self.name = name
@@ -34,6 +36,31 @@ struct Template: Codable, Identifiable, Equatable {
         self.triggers = triggers
         self.vault = vault
         self.context = context
+        self.schemaVersion = schemaVersion
+    }
+
+    // Custom decoder to handle browser extension format (no id field)
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        // Generate ID if not present (browser extension format doesn't have it)
+        self.id = try container.decodeIfPresent(String.self, forKey: .id) ?? UUID().uuidString
+
+        self.name = try container.decode(String.self, forKey: .name)
+        self.behavior = try container.decode(TemplateBehavior.self, forKey: .behavior)
+        self.noteNameFormat = try container.decodeIfPresent(String.self, forKey: .noteNameFormat) ?? "{{title}}"
+        self.path = try container.decodeIfPresent(String.self, forKey: .path) ?? ""
+        self.noteContentFormat = try container.decode(String.self, forKey: .noteContentFormat)
+        self.properties = try container.decodeIfPresent([TemplateProperty].self, forKey: .properties) ?? []
+        self.triggers = try container.decodeIfPresent([String].self, forKey: .triggers)
+        self.vault = try container.decodeIfPresent(String.self, forKey: .vault)
+        self.context = try container.decodeIfPresent(String.self, forKey: .context)
+        self.schemaVersion = try container.decodeIfPresent(String.self, forKey: .schemaVersion)
+    }
+
+    enum CodingKeys: String, CodingKey {
+        case id, name, behavior, noteNameFormat, path, noteContentFormat
+        case properties, triggers, vault, context, schemaVersion
     }
 }
 
