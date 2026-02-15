@@ -263,21 +263,36 @@ class ClippingEngine {
         if !template.properties.isEmpty {
             output += "---\n"
             for property in template.properties {
-                let renderedValue = try renderString(property.value, with: variables)
-                // Skip empty values and LLM prompts (those starting with {{")
-                if renderedValue.isEmpty || property.value.hasPrefix("{{\"") {
+                // Skip LLM prompts (contain {{"  or {{\" or {{\")
+                if property.value.contains("{{\"") || property.value.contains("{{\\\"") {
                     continue
                 }
+
+                let renderedValue = try renderString(property.value, with: variables)
+
+                // Skip empty values or values that are just empty wikilinks/brackets
+                let cleanedValue = renderedValue
+                    .replacingOccurrences(of: "[[]]", with: "")
+                    .replacingOccurrences(of: "[]", with: "")
+                    .trimmingCharacters(in: .whitespacesAndNewlines)
+
+                if cleanedValue.isEmpty {
+                    continue
+                }
+
                 // Format based on property type
                 switch property.type {
                 case .multitext:
                     // Multitext becomes a YAML array
                     let items = renderedValue.components(separatedBy: ",").map { $0.trimmingCharacters(in: .whitespaces) }
-                    if items.count == 1 {
-                        output += "\(property.name): \(escapeYAMLValue(items[0]))\n"
+                    let nonEmptyItems = items.filter { !$0.isEmpty && $0 != "[[]]" }
+                    if nonEmptyItems.isEmpty {
+                        continue
+                    } else if nonEmptyItems.count == 1 {
+                        output += "\(property.name): \(escapeYAMLValue(nonEmptyItems[0]))\n"
                     } else {
                         output += "\(property.name):\n"
-                        for item in items where !item.isEmpty {
+                        for item in nonEmptyItems {
                             output += "  - \(escapeYAMLValue(item))\n"
                         }
                     }

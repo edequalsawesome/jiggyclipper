@@ -35,15 +35,32 @@ var ObsidianClipper = {
         bodyHtml = bodyHtml.replace(/<aside[\s\S]*?<\/aside>/gi, '');
         bodyHtml = bodyHtml.replace(/<!--[\s\S]*?-->/g, '');
 
-        // Try to find main content
-        var mainMatch = bodyHtml.match(/<main[^>]*>([\s\S]*)<\/main>/i);
-        var articleMatch = bodyHtml.match(/<article[^>]*>([\s\S]*)<\/article>/i);
+        // Try to find main content - use non-greedy match to get first/main article
+        // Look for common content container classes first
+        var contentMatch = bodyHtml.match(/<(?:div|article)[^>]*class="[^"]*(?:post-content|article-content|entry-content|content-body|main-content|single-content)[^"]*"[^>]*>([\s\S]*?)<\/(?:div|article)>/i);
 
-        if (articleMatch) {
-            bodyHtml = articleMatch[1];
-        } else if (mainMatch) {
-            bodyHtml = mainMatch[1];
+        if (!contentMatch) {
+            // Try main element
+            contentMatch = bodyHtml.match(/<main[^>]*>([\s\S]*?)<\/main>/i);
         }
+
+        if (!contentMatch) {
+            // Try first article element (non-greedy)
+            contentMatch = bodyHtml.match(/<article[^>]*>([\s\S]*?)<\/article>/i);
+        }
+
+        if (!contentMatch) {
+            // Try role="main"
+            contentMatch = bodyHtml.match(/<[^>]*role=["']main["'][^>]*>([\s\S]*?)<\/[^>]+>/i);
+        }
+
+        if (contentMatch) {
+            bodyHtml = contentMatch[1];
+        }
+
+        // Additional cleanup for remaining cruft
+        bodyHtml = bodyHtml.replace(/<div[^>]*class="[^"]*(?:sidebar|widget|share|social|related|comments|advertisement|nav|menu)[^"]*"[^>]*>[\s\S]*?<\/div>/gi, '');
+        bodyHtml = bodyHtml.replace(/<section[^>]*class="[^"]*(?:sidebar|widget|share|social|related|comments)[^"]*"[^>]*>[\s\S]*?<\/section>/gi, '');
 
         // Convert to markdown
         var content = this.htmlToMarkdown(bodyHtml);
