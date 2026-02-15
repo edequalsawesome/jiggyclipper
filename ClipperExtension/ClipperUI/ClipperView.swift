@@ -50,12 +50,11 @@ struct ClipperView: View {
                 Text(errorMessage)
             }
             .alert("Clipped!", isPresented: $showingSuccess) {
-                Button("Open Obsidian") {
-                    openObsidian()
+                Button("Done") {
                     dismiss()
                 }
             } message: {
-                Text("Note saved to your vault")
+                Text("Note saved to your vault. Open Obsidian to sync.")
             }
         }
     }
@@ -155,12 +154,6 @@ struct ClipperView: View {
             selectedTemplateId = defaultTemplate.id
             viewModel.renderPreview(withTemplateId: defaultTemplate.id)
         }
-    }
-
-    private func openObsidian() {
-        // Open Obsidian app to trigger sync
-        guard let url = URL(string: "obsidian://") else { return }
-        extensionContext?.open(url, completionHandler: nil)
     }
 
     private func clipContent() {
