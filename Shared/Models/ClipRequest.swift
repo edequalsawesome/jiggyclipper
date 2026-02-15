@@ -61,8 +61,13 @@ struct ClipVariables: Codable {
         self.content = content
         self.contentHtml = contentHtml
         self.domain = URL(string: url)?.host ?? ""
-        self.date = ISO8601DateFormatter().string(from: Date())
-        self.time = date
+        // Use local timezone for date/time
+        let now = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+        dateFormatter.timeZone = .current
+        self.date = dateFormatter.string(from: now)
+        self.time = self.date
         self.words = content.split(separator: " ").count
         self.noteName = Self.sanitizeNoteName(title)
         self.meta = [:]
