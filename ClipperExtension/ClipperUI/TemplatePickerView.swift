@@ -59,6 +59,9 @@ struct TemplatePickerView: View {
                 }
             }
         }
+        .onAppear {
+            templateStorage.refresh()
+        }
     }
 }
 

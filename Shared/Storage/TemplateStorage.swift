@@ -13,6 +13,11 @@ class TemplateStorage: ObservableObject {
         loadTemplates()
     }
 
+    /// Reload templates from storage - call this when extension activates
+    func refresh() {
+        loadTemplates()
+    }
+
     func loadTemplates() {
         guard let data = appGroup.getData(forKey: templatesKey) else {
             templates = []

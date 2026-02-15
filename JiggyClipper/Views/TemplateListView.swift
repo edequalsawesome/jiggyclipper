@@ -6,6 +6,8 @@ struct TemplateListView: View {
     @State private var importText = ""
     @State private var showingEditor = false
     @State private var selectedTemplate: Template?
+    @State private var importError: String?
+    @State private var showingImportError = false
 
     var body: some View {
         List {
@@ -77,6 +79,9 @@ struct TemplateListView: View {
                 }
             }
         }
+        .alert(isPresented: $showingImportError) {
+            importErrorAlert
+        }
     }
 
     private func deleteTemplates(at offsets: IndexSet) {
@@ -93,9 +98,19 @@ struct TemplateListView: View {
             showingImportSheet = false
             importText = ""
         } catch {
-            // TODO: Show error alert
-            print("Failed to import template: \(error)")
+            importError = "Invalid JSON format. Make sure you're pasting a single template object, not an array.\n\nError: \(error.localizedDescription)"
+            showingImportError = true
         }
+    }
+}
+
+extension TemplateListView {
+    var importErrorAlert: Alert {
+        Alert(
+            title: Text("Import Failed"),
+            message: Text(importError ?? "Unknown error"),
+            dismissButton: .default(Text("OK"))
+        )
     }
 }
 
